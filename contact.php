@@ -1,4 +1,4 @@
-<?php include 'components/connection.php'; 
+<?php include 'components/connection.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -107,45 +107,46 @@ if (isset($_POST['logout'])) {
 
                 <button type="submit" name="submit-btn" class="btn">send message</button>
             </form>
-            </div><!-- ./form-container -->
+        </div><!-- ./form-container -->
 
-            <div class="address">
-                <div class="title">
-                    <img src="./img/download.png" alt="" class="logo">
-                    <h1>contact detail </h1>
+        <div class="address">
+            <div class="title">
+                <img src="./img/download.png" alt="" class="logo">
+                <h1>contact detail </h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos a temporibus ipsum.</p>
-                </div><!-- ./title -->
+            </div><!-- ./title -->
 
-                <div class="box-container">
-                    <div class="box">
-                        <i class="fa fa-map-pin"></i>
-                        <div>
-                            <h4>address</h4>
-                            <p>1092 merigold lane, coral way</p>
-                        </div>
-                    </div><!-- ./box -->
+            <div class="box-container">
+                <div class="box">
+                    <i class="fa fa-map-pin"></i>
+                    <div>
+                        <h4>address</h4>
+                        <p>1092 merigold lane, coral way</p>
+                    </div>
+                </div><!-- ./box -->
 
-                    <div class="box">
-                        <i class="fa fa-phone"></i>
-                        <div>
-                            <h4>phone number</h4>
-                            <p>8866889955</p>
-                        </div>
-                    </div><!-- ./box -->
+                <div class="box">
+                    <i class="fa fa-phone"></i>
+                    <div>
+                        <h4>phone number</h4>
+                        <p>8866889955</p>
+                    </div>
+                </div><!-- ./box -->
 
-                    <div class="box">
-                        <i class="fa fa-map-pin"></i>
-                        <div>
-                            <h4>email</h4>
-                            <p>hodaa.gohar@gmail.com</p>
-                        </div>
-                    </div><!-- ./box -->
-                </div><!-- ./box-container -->
-            </div><!-- ./address -->
+                <div class="box">
+                    <i class="fa fa-map-pin"></i>
+                    <div>
+                        <h4>email</h4>
+                        <p>hodaa.gohar@gmail.com</p>
+                    </div>
+                </div><!-- ./box -->
+            </div><!-- ./box-container -->
+        </div><!-- ./address -->
 
         <?php include 'components/footer.php'; ?>
     </div><!-- ./main -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="./script.js"></script>
     <?php include 'components/alert.php'; ?>
 </body>

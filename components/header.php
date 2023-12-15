@@ -12,18 +12,28 @@
         </nav>
         <div class="icons">
             <i class="fa fa-user" id="user-btn"></i>
-            <a href="wishlist.php" class="cart-btn"><i class="fa fa-heart-o"></i><sup>0</sup></a>
-            <a href="cart.php" class="cart-btn"><i class="fa fa-cart-arrow-down"></i><sup>0</sup></a>
-            <a href="#">
+            <?php
+            $count_wishlist_items = $conn->prepare("SELECT * FROM `wishlist` WHERE user_id = ?");
+            $count_wishlist_items->execute([$user_id]);
+            $total_wishlist_items = $count_wishlist_items->rowCount();
+            ?>
+            <a href="wishlist.php" class="cart-btn"><i class="fa fa-heart-o"></i><sup><?=$total_wishlist_items ?></sup></a>
+            <?php
+            $count_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+            $count_cart_items->execute([$user_id]);
+            $total_cart_items = $count_cart_items->rowCount();
+            ?>
+            <a href="cart.php" class="cart-btn"><i class="fa fa-cart-arrow-down"></i><sup><?=$total_cart_items ?></sup></a>
+            
             <i class="fa fa-list-ul" id="menu-btn" style="font-size: 1.5rem;"></i>
-            </a>
+            
         </div><!-- ./icons -->
         <div class="user-box ">
-            <?php
-            print_r($_SESSION);
-            ?>
-            <p>username : <span><?php echo $_SESSION['user_name']; ?></span></p>
-            <p>Email : <span><?php echo $_SESSION['user_email']; ?></span></p>
+
+            <p>username : <span><?php if(isset($_SESSION['user_name'])){ echo $_SESSION['user_name'];} ?></span></p>
+               
+                <p>Email : <span><?php if (isset($_SESSION['user_email'])) { echo $_SESSION['user_email'];} ?></span></p>
+            
             <a href="login.php" class="btn">login</a>
             <a href="register.php" class="btn">register</a>
             <form method="post">

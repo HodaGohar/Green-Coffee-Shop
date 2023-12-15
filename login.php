@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id'])) {
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $email = filter_var($email, FILTER_SANITIZE_STRING);
-    $pass = $_POST['pass'];
+    $pass = $_POST['password'];
     $pass = filter_var($pass, FILTER_SANITIZE_STRING);
 
     $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
@@ -63,8 +63,8 @@ if ($select_user->rowCount() > 0) {
                      oninput="this.value = this.value.replace(/\s/g, '')">
                 </div><!-- ./input-filed -->
 
-                <input type="submit" name="submit" value="register now" class="btn">
-                <p>do not have an account? <a href="register.php">register now</a></p>
+                <input type="submit" name="submit" value="login now" class="btn" >
+                <p>do not have an account? <a href="register.php" >register now</a></p>
             </form>
 </section>
     </div><!-- ./main-container -->

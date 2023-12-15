@@ -1,4 +1,4 @@
-<?php include 'components/connection.php'; 
+<?php include 'components/connection.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -21,6 +21,7 @@ if (isset($_POST['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" />
 
     <title>Green Coffee - home page</title>
 </head>
@@ -186,7 +187,7 @@ if (isset($_POST['logout'])) {
                     <div class="detail">
                         <span>BIG OFFERS</span>
                         <h1>Extra 15% Off</h1>
-                    <a href="view_products.php" class="btn">shop now</a>
+                        <a href="view_products.php" class="btn">shop now</a>
                     </div><!-- ./detail -->
                 </div><!-- ./box -->
 
@@ -195,7 +196,7 @@ if (isset($_POST['logout'])) {
                     <div class="detail">
                         <span>new in taste </span>
                         <h1>Coffee House</h1>
-                    <a href="view_products.php" class="btn">shop now</a>
+                        <a href="view_products.php" class="btn">shop now</a>
                     </div><!-- ./detail -->
                 </div><!-- ./box -->
 
@@ -260,6 +261,7 @@ if (isset($_POST['logout'])) {
         <?php include 'components/footer.php'; ?>
     </div><!-- ./main -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="./script.js"></script>
     <?php include 'components/alert.php'; ?>
 </body>

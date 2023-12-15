@@ -25,7 +25,6 @@ if (isset($_POST['add_to_wishlist'])) {
     } else if ($cart_num->rowCount() > 0) {
         $warning_msg[] = 'product already exist in your cart';
     } else {
-
         $select_price = $conn->prepare("SELECT * FROM `products` WHERE id = ?  LIMIT 1");
         $select_price->execute([$product_id]);
         $fetch_price = $select_price->fetch(PDO::FETCH_ASSOC);
@@ -64,7 +63,6 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 
-
 ?>
 <style type="text/css">
     <?php include 'css/style.css'; ?>
@@ -76,64 +74,64 @@ if (isset($_POST['add_to_cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Green Coffee - shop page</title>
+    <title>Green Coffee - product detail</title>
 </head>
 
 <body>
     <?php include 'components/header.php'; ?>
     <div class="main">
         <div class="banner">
-            <h1>shop</h1>
+            <h1>product detail</h1>
         </div><!-- ./banner -->
 
         <div class="title2">
             <a href="home.php">home</a>
-            <span> / our shop</span>
+            <span> / product detail</span>
         </div><!-- ./ title2-->
 
-        <section class="products">
-            <div class="box-container">
-                <?php
-                $select_products = $conn->prepare("SELECT * FROM `products`");
+        <section class="view_page">
+            <?php
+            if (isset($_GET['pid'])) {
+                $pid = $_GET['pid'];
+                $select_products = $conn->prepare("SELECT * FROM `products` WHERE id = '$pid'");
                 $select_products->execute();
                 if ($select_products->rowCount() > 0) {
                     while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
 
-                ?>
-                        <form action="" method="post" class="box">
-                            <img src="./img/<?= $fetch_products['image']; ?>" class="img">
-                            <div class="button">
-                                <button type="submit" name="add_to_cart"><i class="fa fa-shopping-cart"></i></button>
-                                <button type="submit" name="add_to_wishlist"><i class="fa fa-heart-o"></i></button>
-                                <a href="view_page.php?pid=<?php echo $fetch_products['id']; ?>" class="fa fa-eye"></a>
-                            </div><!-- ./button -->
+            ?>
+                        <form action="" method="post">
+                            <img src="./img/<?php echo $fetch_products['image']; ?>">
+                            <div class="detail">
+                                <div class="price">$<?php echo $fetch_products['price'];  ?>/-</div>
+                                <div class="name">$<?php echo $fetch_products['name'];  ?>/-</div>
+                                <div class="product-detail">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, ipsam. ipsum dolor sit amet consectetur adipisicing elit. Ratione tempore repellendus, dolorem quaerat magnam incidunt natus atque eius praesentium porro. ipsum dolor sit amet consectetur adipisicing elit. Maiores sequi veniam fugit quisquam numquam dicta reprehenderit exercitationem deleniti eos tempore esse, minus debitis perspiciatis corporis ut suscipit doloribus hic enim</p>
+                                </div><!-- ./product-detail -->
 
-                            <h3 class="name"><?= $fetch_products['name']; ?></h3>
-                            <input type="hidden" name="product_id" value="<?= $fetch_products['id']; ?>">
-                            <div class="flex">
-                                <p class="price">price $<?= $fetch_products['price']; ?>/-</p>
-                                <input type="number" name="qty" required min="1" value="1" max="99" maxlength="2" class="qty">
-                            </div><!-- ./flex -->
-                            <a href="checkout.php?get_id=<?= $fetch_products['id']; ?>" class="btn">buy now</a>
+                                <input type="hidden" name="product_id" value="<?php echo $fetch_products['id']; ?>">
+
+                                <div class="button">
+                                    <button type="submit" name="add_to_wishlist" class="btn">add to wishlist <i class="fa fa-heart-o"></i></button>
+                                    <input type="hidden" name="qty" value="1" min="0" class="quantity">
+                                    <button type="submit" name="add_to_cart" class="btn">add to cart <i class="fa fa-shopping-cart"></i></button>
+                                </div><!-- ./button -->
+                            </div><!-- ./detail -->
                         </form>
-                <?php
+            <?php
                     }
-                } else {
-                    echo '<p class="empty">no products added yet!</p>';
                 }
-                ?>
+            }
+            ?>
 
-            </div><!-- ./box-container -->
         </section>
 
         <?php include 'components/footer.php'; ?>
     </div><!-- ./main -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <?php include 'components/alert.php'; ?>
     <script src="./script.js"></script>
+    <?php include 'components/alert.php'; ?>
 </body>
 
 </html>

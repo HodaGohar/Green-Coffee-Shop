@@ -1,4 +1,4 @@
-<?php include 'components/connection.php'; 
+<?php include 'components/connection.php';
 session_start();
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
@@ -137,40 +137,41 @@ if (isset($_POST['logout'])) {
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam omnis provident itaque, quas perferendis cupiditate! Rem possimus quis vitae accusantium?</p>
             </div><!-- ./title -->
 
-                <div class="container">
-                    <div class="testimonial-item active">
-                        <img src="./img/01.jpg" alt="">
-                        <h1>sara smith</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
-                    </div><!-- ./testimonial-item -->
+            <div class="container">
+                <div class="testimonial-item active">
+                    <img src="./img/01.jpg" alt="">
+                    <h1>sara smith</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
+                </div><!-- ./testimonial-item -->
 
-                    <div class="testimonial-item ">
-                        <img src="./img/02.jpg" alt="">
-                        <h1>jhon smith</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
-                    </div><!-- ./testimonial-item -->
+                <div class="testimonial-item ">
+                    <img src="./img/02.jpg" alt="">
+                    <h1>jhon smith</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
+                </div><!-- ./testimonial-item -->
 
-                    <div class="testimonial-item ">
-                        <img src="./img/03.jpg" alt="">
-                        <h1>selena ansari</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
-                    </div><!-- ./testimonial-item -->
+                <div class="testimonial-item ">
+                    <img src="./img/03.jpg" alt="">
+                    <h1>selena ansari</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
+                </div><!-- ./testimonial-item -->
 
-                    <div class="testimonial-item ">
-                        <img src="./img/04.jpg" alt="">
-                        <h1>selena ansari</h1>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
-                    </div><!-- ./testimonial-item -->
+                <div class="testimonial-item ">
+                    <img src="./img/04.jpg" alt="">
+                    <h1>selena ansari</h1>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, eum id quibusdam rem et ullam autem dolore ea quas sunt.</p>
+                </div><!-- ./testimonial-item -->
 
-                    <div class="left-arrow" onclick="nextSlide()"><i class="fa fa-caret-left"></i></div><!-- ./left-arrow -->
-                    <div class="right-arrow" onclick="prevSlide()"><i class="fa fa-caret-right"></i></div><!-- ./left-arrow -->
+                <div class="left-arrow" onclick="nextSlide()"><i class="fa fa-caret-left"></i></div><!-- ./left-arrow -->
+                <div class="right-arrow" onclick="prevSlide()"><i class="fa fa-caret-right"></i></div><!-- ./left-arrow -->
 
-                </div><!-- ./container -->
+            </div><!-- ./container -->
         </div><!-- ./testimonial-container -->
 
         <?php include 'components/footer.php'; ?>
     </div><!-- ./main -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js" integrity="sha512-7VTiy9AhpazBeKQAlhaLRUk+kAMAb8oczljuyJHPsVPWox/QIXDFOnT9DUk1UC8EbnHKRdQowT7sOBe7LAjajQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="./script.js"></script>
     <?php include 'components/alert.php'; ?>
 </body>
