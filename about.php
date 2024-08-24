@@ -43,7 +43,7 @@ if (isset($_POST['logout'])) {
                 <div class="detail">
                     <span>coffee</span>
                     <h1>lemon green</h1>
-                    <a href="view-products.php" class="btn">shop now</a>
+                    <a href="view_products.php" class="btn">shop now</a>
                 </div><!-- ./detail -->
             </div><!-- ./box -->
 
@@ -52,7 +52,7 @@ if (isset($_POST['logout'])) {
                 <div class="detail">
                     <span>coffee</span>
                     <h1>lemon green</h1>
-                    <a href="view-products.php" class="btn">shop now</a>
+                    <a href="view_products.php" class="btn">shop now</a>
                 </div><!-- ./detail -->
             </div><!-- ./box -->
 
@@ -61,7 +61,7 @@ if (isset($_POST['logout'])) {
                 <div class="detail">
                     <span>coffee</span>
                     <h1>lemon teaname</h1>
-                    <a href="view-products.php" class="btn">shop now</a>
+                    <a href="view_products.php" class="btn">shop now</a>
                 </div><!-- ./detail -->
             </div><!-- ./box -->
 
@@ -70,7 +70,7 @@ if (isset($_POST['logout'])) {
                 <div class="detail">
                     <span>coffee</span>
                     <h1>lemon green</h1>
-                    <a href="view-products.php" class="btn">shop now</a>
+                    <a href="view_products.php" class="btn">shop now</a>
                 </div><!-- ./detail -->
             </div><!-- ./box -->
         </div><!-- ./about-category -->

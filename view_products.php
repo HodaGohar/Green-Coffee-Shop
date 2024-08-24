@@ -11,7 +11,7 @@ if (isset($_POST['logout'])) {
 }
 //adding products in wishlist
 if (isset($_POST['add_to_wishlist'])) {
-    $id = unique_id();
+    // $id = unique_id();
     $product_id = $_POST['product_id'];
 
     $varify_wishlist = $conn->prepare("SELECT * FROM `wishlist` WHERE user_id = ? AND product_id = ?");
@@ -30,18 +30,18 @@ if (isset($_POST['add_to_wishlist'])) {
         $select_price->execute([$product_id]);
         $fetch_price = $select_price->fetch(PDO::FETCH_ASSOC);
 
-        $insert_wishlist = $conn->prepare("INSERT INTO `wishlist`(id, user_id, product_id, price) VALUES(?,?,?,?)");
-        $insert_wishlist->execute([$id, $user_id, $product_id, $fetch_price['price']]);
+        $insert_wishlist = $conn->prepare("INSERT INTO `wishlist`( user_id, product_id, price) VALUES(?,?,?)");
+        $insert_wishlist->execute([ $user_id, $product_id, $fetch_price['price']]);
         $success_msg[] = 'product added to wishlist successfully';
     }
 }
 //adding products in cart
 if (isset($_POST['add_to_cart'])) {
-    $id = unique_id();
+    // $id = unique_id();
     $product_id = $_POST['product_id'];
 
     $qty = $_POST['qty'];
-    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
+    $qty = filter_var($qty, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $varify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ? AND product_id = ?");
     $varify_cart->execute([$user_id, $product_id]);
@@ -58,8 +58,8 @@ if (isset($_POST['add_to_cart'])) {
         $select_price->execute([$product_id]);
         $fetch_price = $select_price->fetch(PDO::FETCH_ASSOC);
 
-        $insert_cart = $conn->prepare("INSERT INTO `cart`(id, user_id, product_id, price, qty) VALUES(?,?,?,?,?)");
-        $insert_cart->execute([$id, $user_id, $product_id, $fetch_price['price'], $qty]);
+        $insert_cart = $conn->prepare("INSERT INTO `cart`( user_id, product_id, price, qty) VALUES(?,?,?,?)");
+        $insert_cart->execute([ $user_id, $product_id, $fetch_price['price'], $qty]);
         $success_msg[] = 'product added to cart successfully';
     }
 }

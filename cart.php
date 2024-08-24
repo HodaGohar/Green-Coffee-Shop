@@ -16,7 +16,7 @@ if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
 
     $qty = 1;
-    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
+    $qty = filter_var($qty, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $varify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ? AND product_id = ?");
     $varify_cart->execute([$user_id, $product_id]);
@@ -41,10 +41,10 @@ if (isset($_POST['add_to_cart'])) {
 //update product in cart
 if (isset($_POST['update_cart'])) {
     $cart_id = $_POST['cart_id'];
-    $cart_id = filter_var($cart_id, FILTER_SANITIZE_STRING);
+    $cart_id = filter_var($cart_id, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $qty = $_POST['qty'];
-    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
+    $qty = filter_var($qty, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $update_qty = $conn->prepare("UPDATE `cart` SET qty = ? WHERE id = ?");
     $update_qty->execute([$qty, $cart_id]);
@@ -55,7 +55,7 @@ if (isset($_POST['update_cart'])) {
 //delete item from cart
 if (isset($_POST['delete_item'])) {
     $cart_id = $_POST['cart_id'];
-    $cart_id = filter_var($cart_id, FILTER_SANITIZE_STRING);
+    $cart_id = filter_var($cart_id, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $varify_delete_item = $conn->prepare("SELECT * FROM `cart` WHERE id = ? ");
     $varify_delete_item->execute([$cart_id]);

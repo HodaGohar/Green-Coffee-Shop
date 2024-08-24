@@ -40,7 +40,7 @@ if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
 
     $qty = $_POST['qty'];
-    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
+    $qty = filter_var($qty, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $varify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ? AND product_id = ?");
     $varify_cart->execute([$user_id, $product_id]);

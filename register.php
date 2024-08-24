@@ -7,15 +7,17 @@ if (isset($_SESSION['user_id'])) {
 }
 //register user
 if (isset($_POST['submit'])) {
-    $id = unique_id();
+    // $id = unique_id();
     $name = $_POST['name'];
-    $name = filter_var($name, FILTER_SANITIZE_STRING);
+    $name = filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
     $email = $_POST['email'];
-    $email = filter_var($email, FILTER_SANITIZE_STRING);
+    $email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
     $pass = $_POST['password'];
-    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
+    $pass = filter_var($pass, FILTER_SANITIZE_SPECIAL_CHARS);
     $cpass = $_POST['cpass'];
-    $cpass = filter_var($cpass, FILTER_SANITIZE_STRING);
+    $cpass = filter_var($cpass, FILTER_SANITIZE_SPECIAL_CHARS);
+    $user_type = $_POST['user_type'];
+    $user_type = filter_var($user_type, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
     $select_user->execute([$email]);
@@ -29,11 +31,11 @@ if (isset($_POST['submit'])) {
             $message[] = 'confirm your password';
             echo 'confirm your password';
         } else {
-            $insert_user = $conn->prepare("INSERT INTO `users`(id,name,email,password) VALUES(?,?,?,?)");
-            $insert_user->execute([$id, $name, $email, $pass]);
+            $insert_user = $conn->prepare("INSERT INTO `users`(name,email,password) VALUES(?,?,?)");
+            $insert_user->execute([ $name, $email, $pass]);
             header('location: home.php');
             $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
-            $select_user->execute([ $email, $pass]);
+            $select_user->execute([$email, $pass]);
             $row = $select_user->fetch(PDO::FETCH_ASSOC);
             if ($select_user->rowCount() > 0) {
                 $_SESSION['user_id'] = $row['id'];
@@ -49,7 +51,7 @@ if (isset($_POST['submit'])) {
 
 <style type="text/css">
     <?php include 'css/style.css'; ?>
-</style>
+</style>m
 
 <!DOCTYPE html>
 <html lang="en">
@@ -78,25 +80,31 @@ if (isset($_POST['submit'])) {
                 <div class="input-field">
                     <p>your email <sup class="input-sup">*</sup></p>
                     <input type="email" name="email" required placeholder="enter your email" maxlength="50"
-                     oninput="this.value = this.value.replace(/\s/g, '')">
+                        oninput="this.value = this.value.replace(/\s/g, '')">
                 </div><!-- ./input-filed -->
 
                 <div class="input-field">
                     <p>your password <sup class="input-sup">*</sup></p>
                     <input type="password" name="password" required placeholder="enter your password" maxlength="50"
-                     oninput="this.value = this.value.replace(/\s/g, '')">
+                        oninput="this.value = this.value.replace(/\s/g, '')">
                 </div><!-- ./input-filed -->
 
                 <div class="input-field">
                     <p>confirm password <sup class="input-sup">*</sup></p>
-                    <input type="password" name="cpass" required placeholder="enter your confirm password" maxlength="50" 
-                    oninput="this.value = this.value.replace(/\s/g, '')">
+                    <input type="password" name="cpass" required placeholder="enter your confirm password" maxlength="50"
+                        oninput="this.value = this.value.replace(/\s/g, '')">
+                </div><!-- ./input-filed -->
+
+                <div class="input-field">
+                    <p>user type <sup class="input-sup">*</sup></p>
+                    <input type="text" name="user_type" required placeholder="enter your  user_type" maxlength="50"
+                        oninput="this.value = this.value.replace(/\s/g, '')">
                 </div><!-- ./input-filed -->
 
                 <input type="submit" name="submit" value="register now" class="btn">
                 <p>already have an account? <a href="login.php">login now</a></p>
             </form>
-</section>
+        </section>
     </div><!-- ./main-container -->
 </body>
 

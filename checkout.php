@@ -14,17 +14,17 @@ if (isset($_POST['logout'])) {
 // add order
 if (isset($_POST['place_order'])) {
     $name = $_POST['name'];
-    $name = filter_var($name, FILTER_SANITIZE_STRING);
+    $name = filter_var($name, FILTER_SANITIZE_SPECIAL_CHARS);
     $number = $_POST['number'];
-    $number = filter_var($number, FILTER_SANITIZE_STRING);
+    $number = filter_var($number, FILTER_SANITIZE_SPECIAL_CHARS);
     $email = $_POST['email'];
-    $email = filter_var($email, FILTER_SANITIZE_STRING);
+    $email = filter_var($email, FILTER_SANITIZE_SPECIAL_CHARS);
     $address = $_POST['flat'] . ', ' . $_POST['street'] . ',' . $_POST['city'] . ',' . $_POST['country'] . ',' . $_POST['pincode'];
-    $address = filter_var($address, FILTER_SANITIZE_STRING);
+    $address = filter_var($address, FILTER_SANITIZE_SPECIAL_CHARS);
     $address_type = $_POST['address_type'];
-    $address_type = filter_var($address_type, FILTER_SANITIZE_STRING);
+    $address_type = filter_var($address_type, FILTER_SANITIZE_SPECIAL_CHARS);
     $method = $_POST['method'];
-    $method = filter_var($method, FILTER_SANITIZE_STRING);
+    $method = filter_var($method, FILTER_SANITIZE_SPECIAL_CHARS);
 
     $varify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id=?");
     $varify_cart->execute([$user_id]);
@@ -35,13 +35,22 @@ if (isset($_POST['place_order'])) {
         $get_product->execute([$_GET['get_id']]);
         if ($get_product->rowCount() > 0) {
             while ($fetch_p = $get_product->fetch(PDO::FETCH_ASSOC)) {
-                
 
-                $insert_order = $conn->prepare("INSERT INTO `orders` (id, user_id, name, number, email,
-                    address, address_type, method, product_id, price, qty) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+
+                $insert_order = $conn->prepare("INSERT INTO `orders` ( user_id, name, number, email,
+                    address, address_type, method, product_id, price, qty) VALUES (?,?,?,?,?,?,?,?,?,?)");
                 $insert_order->execute([
-                    unique_id(), $user_id, $name, $number, $email, $address, $address_type,
-                    $method, $fetch_p['id'], $fetch_p['price'], 1
+                    // unique_id(),
+                    $user_id,
+                    $name,
+                    $number,
+                    $email,
+                    $address,
+                    $address_type,
+                    $method,
+                    $fetch_p['id'],
+                    $fetch_p['price'],
+                    1
                 ]);
                 header('location: order.php');
             }
@@ -53,8 +62,17 @@ if (isset($_POST['place_order'])) {
             $insert_order = $conn->prepare("INSERT INTO `orders` (id, user_id, name, number, email,
                     address, address_type, method, product_id, price, qty) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             $insert_order->execute([
-                unique_id(), $user_id, $name, $number, $email, $address, $address_type,
-                $method, $f_cart['product_id'], $f_cart['price'], $f_cart['qty']
+                unique_id(),
+                $user_id,
+                $name,
+                $number,
+                $email,
+                $address,
+                $address_type,
+                $method,
+                $f_cart['product_id'],
+                $f_cart['price'],
+                $f_cart['qty']
             ]);
             header('location: order.php');
         }
